@@ -1,2 +1,1 @@
-# Criativacao
-Cumunidade online
+CodeChamber é uma rede social voltada para estudantes e entusiastas de tecnologia, onde você pode compartilhar conhecimento, se conectar com outros devs e colaborar em projetos de programação. Junte-se a nós para aprender, ensinar e trocar experiências no mundo da TI!
