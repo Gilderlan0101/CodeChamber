@@ -7,7 +7,7 @@ authors = [
 ]
 license-files = ["LICENSE"]
 readme = "README.md"
-requires-python = ">=3.8.10"
+requires-python = ">=3.13.0"
 dependencies = [
     "sqlalchemy (>=2.0.37,<3.0.0)",
     "python-multipart (>=0.0.20,<0.0.21)",
@@ -31,6 +31,10 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.9.3"
 
+[tool.poetry.group.tests.dependencies]
+pytest = "^8.3.4"
+pytest-cov = "^6.0.0"
+pytest-random = "^0.2"
 
 [tool.ruff]
 line-length = 79
@@ -42,3 +46,9 @@ quote-style = "double"
 
 [tool.ruff.lint]
 select = ["I", "F", "W", "E", "UP"]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+required_plugins = ["pytest-cov"]
+addopts = ["-vvv", "--doctest-modules", "--cov=application/src/", "--cov-report=html"]
+testpaths = ["application/tests"]
