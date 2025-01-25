@@ -1,4 +1,5 @@
 import sqlite3
+
 from pydantic import BaseModel
 
 
@@ -9,15 +10,17 @@ class Post(BaseModel):
     - nome: Nome do usuário.
     - img_path: Caminho da imagem associada ao post (opcional).
     """
+
     nome: str  # Nome do autor
     img_path: str = None  # Caminho da imagem (opcional)
+
 
 def banco_post():
     """
     Conexão com o banco de dados.
     Retorna uma tupla contendo a conexão e o cursor.
     """
-    banco = sqlite3.connect('banco_posts_comunidade.db', timeout=5)
+    banco = sqlite3.connect("banco_posts_comunidade.db", timeout=5)
     return banco, banco.cursor()
 
 
@@ -45,7 +48,7 @@ def criando_post(novo_post: Post):
     Insere um novo post no banco de dados.
     Retorna o ID do post criado.
     """
-    with sqlite3.connect('banco_posts_comunidade.db', timeout=10) as banco:
+    with sqlite3.connect("banco_posts_comunidade.db", timeout=10) as banco:
         cursor = banco.cursor()
 
         cursor.execute(
@@ -53,7 +56,7 @@ def criando_post(novo_post: Post):
             INSERT INTO post_do_usuario (nome, img_path)
             VALUES (?, ?)
             """,
-            (novo_post.nome, novo_post.img_path)
+            (novo_post.nome, novo_post.img_path),
         )
         banco.commit()
         return cursor.lastrowid  # Retorna o ID do novo post criado

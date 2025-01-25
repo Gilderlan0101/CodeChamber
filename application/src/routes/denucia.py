@@ -1,9 +1,10 @@
-from flask import Blueprint, render_template, url_for, redirect
+from flask import Blueprint, render_template
 
-# Pagina off 
+# Pagina off
 
-denucia = Blueprint('denucia', __name__, template_folder='templates')
-@denucia.route('/devorbit/denucia/', methods=['POST', 'GET'])
+denucia = Blueprint("denucia", __name__, template_folder="templates")
+
+
+@denucia.route("/devorbit/denucia/", methods=["POST", "GET"])
 def page_denucia():
-
-    return render_template('denucia.html')
+    return render_template("denucia.html")

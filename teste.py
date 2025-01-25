@@ -1,4 +1,4 @@
 import os
 
-var =  os.path
+var = os.path
 print(var)
