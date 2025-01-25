@@ -45,7 +45,8 @@ def profile_page(usuario):
 
         # user_metadata = user_metadata[0]
 
-        # Preenchendo campos opcionais com valores padrão  | Verificar o banco de dados
+        # Preenchendo campos opcionais com valores padrão
+        # Verificar o banco de dados
         biography = user_metadata.get("bio", None)
         banner = user_metadata.get("banner", None)
         photo_user_profile = user_metadata.get("user_photo", None)
@@ -55,29 +56,37 @@ def profile_page(usuario):
         followers = user_metadata.get("followers", 0)
         following = user_metadata.get("following", 0)
 
-        # Verificar se é o perfil do próprio usuário logado | caso não for mostre o btn de seguir
-        seguir = "Networking" if usuario != current_user.username else None
+        # Verificar se é o perfil do próprio usuário logado
+        # caso não for mostre o btn de seguir
+        # seguir = "Networking" if usuario != current_user.username else None
 
         # Filtrar os posts do usuário
         data = dataRequests()
         if not isinstance(data, dict) or "todos_os_posts" not in data:
             return redirect(url_for("errorHttp.page_erro"))
 
-        # Vamos pergar os posts do usuario desta variavel | AQUI MOSTRA APENAS OS POSTS DO USUARIO | PERFIL
+        # Vamos pergar os posts do usuario desta variavel
+        # AQUI MOSTRA APENAS OS POSTS DO USUARIO | PERFIL
         filtered_user_posts = [
             post
             for post in data["todos_os_posts"]
             if post["user_id"] == current_user.id
         ]
 
-        # 1. Chama a função `dataRequests()` para obter os dados da API ou banco de dados,
-        # que geralmente retorna um dicionário contendo várias informações, incluindo os posts.
+        # 1. Chama a função `dataRequests()` para obter os dados da API
+        #  ou banco de dados,
+        # que geralmente retorna um dicionário contendo várias informações,
+        #  incluindo os posts.
         var = dataRequests()
-        # 2. Extrai apenas os posts da resposta retornada, acessando a chave "todos_os_posts".
-        # Isso garante que a variável `posts` contenha apenas a lista de posts para ser processada.
+        # 2. Extrai apenas os posts da resposta retornada, acessando a
+        #  chave "todos_os_posts".
+        # Isso garante que a variável `posts` contenha apenas a lista de
+        #  posts para ser processada.
         posts = var["todos_os_posts"]  # Extrai apenas os posts
-        # 3. Envia a lista de posts para a função `enrich_posts_with_user_info()`,
-        # que adiciona informações adicionais aos comentários, como nome e foto do autor.
+        # 3. Envia a lista de posts para a função
+        # `enrich_posts_with_user_info()`,
+        # que adiciona informações adicionais aos comentários,
+        # como nome e foto do autor.
         # O resultado enriquecido é armazenado em `enriched_posts`.
         enriched_posts = enrich_posts_with_user_info(posts)
 

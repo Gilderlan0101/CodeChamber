@@ -1,5 +1,6 @@
 # utf-8
 import re
+import urllib.parse
 
 # Lista de palavras impróprias
 IMPROPER_KEYWORDS = [
@@ -39,8 +40,5 @@ def personal_link(url):
             return False
 
     # Verificar se a URL tem um formato válido
-    url_regex = r"^(https?:\/\/)?(www\.)?[\w\-]+\.[a-z]{2,}(\.[a-z]{2,})?(\/[\w\-]*)*\/?$"
-    if not re.match(url_regex, url):
-        return False
-
-    return True
+    parsed_url = urllib.parse.urlparse(url)
+    return parsed_url.scheme and parsed_url.netloc

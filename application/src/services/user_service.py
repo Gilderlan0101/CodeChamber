@@ -8,7 +8,8 @@ def get_user_info(user_id):  # Busca por ID | usuario logado | Dono da conta
 
     # Buscar informações completas do usuário no banco
     cursor.execute(
-        "SELECT id, photo, bio, github, likedin, site, followers, following, banner, name FROM usuarios WHERE id = ?",
+        "SELECT id, photo, bio, github, likedin, site, followers, following, "
+        + "banner, name FROM usuarios WHERE id = ?",
         (user_id,),
     )
     user = cursor.fetchone()
@@ -80,7 +81,8 @@ def get_infor_comment(user_id):
 def enrich_posts_with_user_info(posts):
     """
     Enriquecimento dos posts com id e nome dos usuários nos comentários.
-    Essa função buscar pegar o id do usuario que comentou em um post, com o id do usuario buscamos informaçoes sobre
+    Essa função buscar pegar o id do usuario que comentou em um post, com o id
+    do usuario buscamos informaçoes sobre
     ele. como (foto e nome).
     """
     enriched_posts = []
@@ -102,7 +104,7 @@ def enrich_posts_with_user_info(posts):
                     comment["username"] = user_info["username"]
                     comment["photo"] = user_info["photo"]
                 else:
-                    # Adicionar informações padrão se o usuário não for encontrado
+                    # Adicionar informações padrão se usuário não encontrado
                     comment["photo"] = None
                     comment["username"] = "Desconhecido"
 

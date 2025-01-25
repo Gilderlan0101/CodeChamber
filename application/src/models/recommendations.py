@@ -45,7 +45,8 @@ def recommendationsUser():
 
         # Busca os dados das tabelas
         query = f"""
-        SELECT usuarios.id, usuarios.name, usuarios.photo, user_information.occupation
+        SELECT usuarios.id, usuarios.name, usuarios.photo,
+        user_information.occupation
         FROM usuarios
         INNER JOIN user_information ON usuarios.id = user_information.id
         LIMIT {limit}

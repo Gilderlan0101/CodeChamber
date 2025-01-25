@@ -57,14 +57,20 @@ def home_page():
         user_id = user_data.get("id")
         photo_user_profile = user_data.get("user_photo", None)
 
-        # 1. Chama a função `dataRequests()` para obter os dados da API ou banco de dados,
-        # que geralmente retorna um dicionário contendo várias informações, incluindo os posts.
+        # 1. Chama a função `dataRequests()` para obter os dados da API ou
+        #  banco de dados,
+        # que geralmente retorna um dicionário contendo várias informações,
+        #  incluindo os posts.
         var = dataRequests()
-        # 2. Extrai apenas os posts da resposta retornada, acessando a chave "todos_os_posts".
-        # Isso garante que a variável `posts` contenha apenas a lista de posts para ser processada.
+        # 2. Extrai apenas os posts da resposta retornada, acessando a chave
+        #  "todos_os_posts".
+        # Isso garante que a variável `posts` contenha apenas a lista de posts
+        #  para ser processada.
         posts = var["todos_os_posts"]  # Extrai apenas os posts
-        # 3. Envia a lista de posts para a função `enrich_posts_with_user_info()`,
-        # que adiciona informações adicionais aos comentários, como nome e foto do autor.
+        # 3. Envia a lista de posts para a função
+        # `enrich_posts_with_user_info()`,
+        # que adiciona informações adicionais aos comentários, como nome e foto
+        #  do autor.
         # O resultado enriquecido é armazenado em `enriched_posts`.
         enriched_posts = enrich_posts_with_user_info(posts)
 
@@ -78,7 +84,7 @@ def home_page():
                 "home.html",
                 username=username,
                 usuario=current_user.username,
-                photo_user_profile=photo_user_profile,  # foto do usuario logado | dono da conta
+                photo_user_profile=photo_user_profile,
                 id=current_user.id,
                 posts=posts,
                 post_banner=post_banner,
@@ -109,7 +115,12 @@ def home_page():
         # Optionally log more details, such as the request URL or user info
         logging.critical(f"Request URL: {request.url}")
         logging.critical(
-            f"User ID: {current_user.id if current_user.is_authenticated else 'Not authenticated'}"
+            "User ID: "
+            + str(
+                current_user.id
+                if current_user.is_authenticated
+                else "Not authenticated"
+            )
         )
 
         # Return to error page or render a custom message

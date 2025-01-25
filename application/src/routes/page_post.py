@@ -35,10 +35,10 @@ def create_post_route():
     if request.method == "POST":
         try:
             # Coletar dados do formulário
-            titulo = request.form.get("titulo")  # name="titulo"
-            post_content = request.form.get("post")  # name="post"
-            post_image = request.files.get("file")  # name="file"
-            username = current_user.username  # Nome do usuário logado
+            titulo = request.form.get("titulo")  # name="titulo"  # noqa
+            post_content = request.form.get("post")  # name="post"  # noqa
+            post_image = request.files.get("file")  # name="file"  # noqa
+            username = current_user.username  # Nome do usuário logado  # noqa
 
         except Exception as e:
             flash(f"Erro ao criar o post: {str(e)}", "error")

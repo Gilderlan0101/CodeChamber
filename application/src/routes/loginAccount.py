@@ -24,7 +24,9 @@ def login_page():
     if request.method == "POST":
         email = request.form.get("email")
         password = request.form.get("password")
-        # remember_me = request.form['remember_me'] <-- futuramente salva o usuario na session para não precisa realiza login novamente
+        # remember_me = request.form['remember_me']
+        # futuramente salva o usuario na session para não precisa
+        # realiza login novamente
 
         # Verificar o login
         try_login = Login(email, password)

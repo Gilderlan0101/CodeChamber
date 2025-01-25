@@ -25,14 +25,15 @@ def make_cache_key():
 @cache.cached(timeout=5000, key_prefix=make_cache_key)
 def get_user_info(user_id):
     """
-    Esta função serve para busca dados padrão caso algum tipo de dado do usuario não esteja em
-    (user_information) Podemos resgata os dados aqui
+    Esta função serve para busca dados padrão caso algum tipo de dado do
+    usuario não esteja em (user_information) Podemos resgata os dados aqui
     """
     banco, cursor = my_db()
 
     # Buscar informações completas do usuário no banco
     cursor.execute(
-        "SELECT id, photo, bio, github, likedin, site, followers, following, banner, name FROM usuarios WHERE name = ?",
+        "SELECT id, photo, bio, github, likedin, site, followers, following, "
+        + " banner, name FROM usuarios WHERE name = ?",
         (user_id,),
     )
     user = cursor.fetchone()
@@ -144,7 +145,8 @@ def format_posts(posts: list, db_data: Dict) -> Dict:
 
             if "username" not in user_info:
                 logging.warning(
-                    f"Usuário {real_name} não tem 'username'. Dados: {user_info}"
+                    f"Usuário {real_name} não tem 'username'. Dados: "
+                    + str(user_info)
                 )
 
             formatted_comments = [
@@ -224,7 +226,9 @@ def format_posts(posts: list, db_data: Dict) -> Dict:
         "post_titulo": os.getenv("MENSAGEN", "Fala Dev!"),
         "post": os.getenv(
             "MENSAGEN_POST",
-            "Os melhores posts vão aparecer aqui! 🌟 Não deixe de comentar e compartilhar suas ideias. Vamos juntos criar uma comunidade incrível!",
+            "Os melhores posts vão aparecer aqui! 🌟 Não deixe de comentar e"
+            + " compartilhar suas ideias. "
+            + "Vamos juntos criar uma comunidade incrível!",
         ),
         "nome": os.getenv("CODECHAMBER", "DEV ORBIT"),
     }
@@ -236,7 +240,10 @@ def format_posts(posts: list, db_data: Dict) -> Dict:
 
 
 def dataRequests() -> Dict:
-    """Processa dados da API e do banco de dados, retornando um dicionário formatado."""
+    """
+    Processa dados da API e do banco de dados,
+    retornando um dicionário formatado.
+    """
     try:
         posts = fetch_api_data()
         db_data = fetch_database_data()
@@ -253,7 +260,8 @@ def dataRequests() -> Dict:
 
     except requests.exceptions.ConnectionError as e:
         logging.error(
-            f"failed to connect to the server: {e.__class__.__name__}: line 125"
+            f"failed to connect to the server: {e.__class__.__name__}: "
+            + "line 125"
         )
         # log_error(e)
         return {}

@@ -37,6 +37,7 @@ line-length = 79
 
 [tool.ruff.format]
 preview = true
+docstring-code-line-length = 72
 quote-style = "double"
 
 [tool.ruff.lint]

@@ -1,4 +1,4 @@
-# Não devemos usar ( print ) devemos usar logging se usar print pfv remova depois
+# Não devemos usar ( print ) devemos usar logging se usar print pfv remova
 import logging
 import os
 import os.path
@@ -7,7 +7,6 @@ import time
 
 from dotenv import load_dotenv
 from flask import Flask
-from flask_bcrypt import Bcrypt
 from flask_caching import Cache
 from flask_cors import CORS
 from flask_login import LoginManager, UserMixin
@@ -35,7 +34,8 @@ def get_db_connection():
     return sqlite3.connect("usuarios.db")
 
 
-# Classe User com suporte ao Flask-Login | Podemos add novos paramentros ex: email etc... Talves
+# Classe User com suporte ao Flask-Login | Podemos add novos paramentros ex:
+# email etc... Talves
 class User(UserMixin):
     def __init__(self, id, username):
         self.id = id
@@ -90,9 +90,10 @@ def create_app():
     # CORS para API interna e externa
     CORS(app, supports_credentials=True, resources={r"/*": {"origins": "*"}})
     logging.debug("CORS configurado com sucesso.")
-    hashing = Bcrypt(app)
+    # hashing = Bcrypt(app)
 
-    # Registrar blueprints | Devem sergui desta forma, sempre que for add novas Blueprints
+    # Registrar blueprints | Devem sergui desta forma,
+    # sempre que for add novas Blueprints
     from application.src.routes.home import home_
 
     app.register_blueprint(home_)
@@ -171,7 +172,8 @@ def create_app():
     }
     app.config.update(CONFIG)
 
-    # Logs iniciais para monitoramento | Limpando o teminal | para visualizar erros
+    # Logs iniciais para monitoramento | Limpando o teminal
+    # para visualizar erros
     logging.info("Inicializando aplicação Flask...")
     time.sleep(1)
     logging.info("Realizando verificações iniciais...")

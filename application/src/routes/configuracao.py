@@ -92,7 +92,8 @@ def config_account(usuario):
         conn = sqlite3.connect(os.getenv("BANCO_DB"))
         cursor = conn.cursor()
         cursor.execute(
-            "SELECT id, photo, email, bio, date_create, banner FROM usuarios WHERE name = ?",
+            "SELECT id, photo, email, bio, date_create, banner FROM usuarios "
+            + " WHERE name = ?",
             (usuario,),
         )
 

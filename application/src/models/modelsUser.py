@@ -11,7 +11,8 @@ class Cadastro:
         name (str): O nome do usuário. Será capitalizado automaticamente.
         last_name (str): O sobrenome do usuário.
         email (str): O email do usuário. Espera-se que seja um email válido.
-        age (int): A idade do usuário. Pode ser usada para validação de maioridade.
+        age (int): A idade do usuário. Pode ser usada para validação de
+            maioridade.
         password (str): A senha do usuário. No futuro, será importante realizar
                         validações e criptografia.
     """
@@ -38,7 +39,8 @@ class UserInformation:
     Atributos:
         username (str): O nome de usuário único escolhido pelo usuário.
         name (str): O nome completo do usuário.
-        email (str): O email do usuário. Geralmente único e utilizado para login.
+        email (str): O email do usuário. Geralmente único e utilizado para
+            login.
         occupation (str): A ocupação ou profissão do usuário. Pode ser útil
                            para categorizar usuários.
     """
@@ -60,8 +62,10 @@ class Login:
     serão realizadas em etapas posteriores.
 
     Atributos:
-        email (str): O email do usuário, usado para identificar o usuário no sistema.
-        password (str): A senha do usuário, que será verificada durante o processo de login.
+        email (str): O email do usuário, usado para identificar o
+            usuário no sistema.
+        password (str): A senha do usuário, que será verificada durante o
+            processo de login.
     """
 
     def __init__(self, email: str, password: str):

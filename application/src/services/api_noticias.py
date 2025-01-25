@@ -35,7 +35,8 @@ def get_top_stories(
 
     if not api_url:
         print(
-            "⚠️ Por favor, configure a chave da API de notícias! Acesse https://developer.nytimes.com/ para obter sua chave."
+            "⚠️ Por favor, configure a chave da API de notícias! "
+            + "Acesse https://developer.nytimes.com/ para obter sua chave."
         )
 
     if response.status_code == 200:

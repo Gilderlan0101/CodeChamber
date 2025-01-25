@@ -35,7 +35,8 @@ def create_database():
     )
 
     # Criação da tabela `user_information` com relação ao `usuarios`
-    # Essas duas TABELAS devem continua tendo relação com o id , para buscar as infor do usuario etc..
+    # Essas duas TABELAS devem continua tendo relação com o id , para buscar
+    # as infor do usuario etc..
     cursor.execute(
         """CREATE TABLE IF NOT EXISTS user_information(
         id INTEGER PRIMARY KEY,  -- Mesmo ID da tabela `usuarios`
@@ -129,7 +130,8 @@ def check_user_login(login: Login):
 
 
 # Função para adicionar a coluna 'bio' se não existir
-# add column e usada para cria novas coluunas teste, para não precisar excluir o banco
+# add column e usada para cria novas coluunas teste, para não precisar
+# excluir o banco
 def add_column():
     banco, cursor = my_db()
 
@@ -188,7 +190,8 @@ def add_column():
 def link_of_user(link: Links, user_id: int):
     banco, cursor = my_db()
     try:
-        # Atualiza os campos github, linkedin e site do usuário com o ID especificado
+        # Atualiza os campos github, linkedin e site do usuário com o
+        # ID especificado
         cursor.execute(
             """
         UPDATE usuarios

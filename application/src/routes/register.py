@@ -85,7 +85,7 @@ def page_register():
             if register_in_db and add_user and Cadastro:
                 # Adiciona informações à sessão
                 session["user"] = {
-                    "id": user_id,  # Obtém o ID do banco de dados após o registro
+                    "id": user_id,  # Obtém o ID do banco após registro
                     "name": name,
                     "email": email,
                 }
