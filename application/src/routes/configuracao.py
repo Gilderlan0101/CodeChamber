@@ -18,7 +18,7 @@ from application.src.database.users.configure_users import (
     Links,
     link_of_user,
 )
-from application.src.models.link_validators import ValidatesLinks
+from application.src.models.link_validators import validate_links
 from application.src.services.user_service import get_user_info
 
 configuracao_ = Blueprint("config", __name__, template_folder="templates")
@@ -44,21 +44,21 @@ def config_account(usuario):
         site = request.form.get("site")
 
         # Validação dos links
-        validateslinks = ValidatesLinks(
+        validates_links = validate_links(
             github=github, linkedin=linkedin, site=site
         )
 
         # Validar os links
-        if not validateslinks:
+        if not validates_links:
             flash(
                 ("github", "O link do GitHub fornecido é inválido."), "error"
             )
 
         # Verifica se pelo menos um dos links é válido
         if (
-            validateslinks["github_valid"]
-            or validateslinks["linkedin_valid"]
-            or validateslinks["site_valid"]
+            validates_links["github_valid"]
+            or validates_links["linkedin_valid"]
+            or validates_links["site_regex"]
         ):
             user_id = session.get("user", {}).get("id")
             if not user_id:
@@ -66,11 +66,11 @@ def config_account(usuario):
 
             # Correção: Passar valores diretamente
             link_data = Links(
-                github=github if validateslinks["github_valid"] else None,
+                github=github if validates_links["github_valid"] else None,
                 linkedin=linkedin
-                if validateslinks["linkedin_valid"]
+                if validates_links["linkedin_valid"]
                 else None,
-                site=site if validateslinks["site_regex"] else None,
+                site=site if validates_links["site_regex"] else None,
             )
             print(link_data)
             link_of_user(link_data, user_id)

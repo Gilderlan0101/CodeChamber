@@ -20,7 +20,7 @@ dependencies = [
     "flask-caching (>=2.3.0,<3.0.0)",
     "requests (>=2.32.3,<3.0.0)",
     "fastapi (>=0.115.7,<0.116.0)",
-    "aiosqlite (>=0.20.0,<0.21.0)"
+    "aiosqlite (>=0.20.0,<0.21.0)",
 ]
 
 
@@ -35,6 +35,9 @@ ruff = "^0.9.3"
 pytest = "^8.3.4"
 pytest-cov = "^6.0.0"
 pytest-random = "^0.2"
+
+[tool.poetry]
+package-mode = false
 
 [tool.ruff]
 line-length = 79
@@ -51,4 +54,5 @@ select = ["I", "F", "W", "E", "UP"]
 minversion = "6.0"
 required_plugins = ["pytest-cov"]
 addopts = ["-vvv", "--doctest-modules", "--cov=application/src/", "--cov-report=html"]
-testpaths = ["application/tests"]
+testpaths = ["tests"]
+pythonpath = "."

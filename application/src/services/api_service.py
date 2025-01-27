@@ -1,7 +1,6 @@
 import logging
 import os
 import sqlite3
-from typing import Dict
 
 import requests
 from dotenv import load_dotenv
@@ -84,7 +83,7 @@ def fetch_api_data() -> list:
         print(e.__class__.__name__)
 
 
-def fetch_database_data() -> Dict:
+def fetch_database_data() -> dict:
     """Busca informações complementares do banco de dados SQLite."""
     try:
         conn = sqlite3.connect(os.getenv("BANCO_DB"))
@@ -114,7 +113,7 @@ def fetch_database_data() -> Dict:
         conn.close()
 
 
-def format_posts(posts: list, db_data: Dict) -> Dict:
+def format_posts(posts: list, db_data: dict) -> dict:
     try:
         """Formata os dados dos posts com informações do banco de dados."""
 
@@ -239,7 +238,7 @@ def format_posts(posts: list, db_data: Dict) -> Dict:
     return {"todos_os_posts": best_post_list, "post_banner": banner}
 
 
-def dataRequests() -> Dict:
+def dataRequests() -> dict:
     """
     Processa dados da API e do banco de dados,
     retornando um dicionário formatado.
