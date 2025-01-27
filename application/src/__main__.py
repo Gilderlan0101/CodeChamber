@@ -110,7 +110,7 @@ def create_app():
 
     app.register_blueprint(register_)
 
-    from application.src.services.perfil import profile, viws_img
+    from application.src.routes.perfil import profile, viws_img
 
     app.register_blueprint(profile)
     app.register_blueprint(viws_img)
@@ -138,6 +138,10 @@ def create_app():
     from application.src.routes.username import termosEcondicao
 
     app.register_blueprint(termosEcondicao)
+
+    from application.src.routes.get_search import query
+
+    app.register_blueprint(query)
 
     create_database()  # Banco de dados
     add_column()  # add coluna no banco
