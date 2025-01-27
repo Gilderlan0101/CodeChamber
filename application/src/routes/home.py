@@ -74,6 +74,10 @@ def home_page():
         # O resultado enriquecido é armazenado em `enriched_posts`.
         enriched_posts = enrich_posts_with_user_info(posts)
 
+
+       
+
+
         recommendations = recommendationsUser()  # Prepare recomendações
         likes = [
             post["likes"] for post in posts if post["likes"] >= 0

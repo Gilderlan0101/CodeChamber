@@ -1,5 +1,5 @@
 {
-  "name": "criativacao",
+  "name": "devorbit",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "tailwindcss": "^3.4.14"
+    "tailwindcss": "^3.4.17"
   },
   "dependencies": {
     "react-modal": "^3.16.1"
