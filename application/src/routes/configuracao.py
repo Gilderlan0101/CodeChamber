@@ -1,13 +1,3 @@
-import sqlite3
-from flask_login import UserMixin
-from flask_bcrypt import check_password_hash, generate_password_hash
-from flask import render_template, Blueprint, redirect, flash, url_for, request, session
-import requests
-from datetime import datetime
-from flask_login import current_user, login_required
-from application.src.database.users.configure_users import my_db, Links, link_of_user
-from application.src.models.link_validators import ValidatesLinks
-from application.src.services.user_service import get_user_info, UserData
 import os
 import sqlite3
 
@@ -28,11 +18,7 @@ from application.src.database.users.configure_users import (
     Links,
     link_of_user,
 )
-from application.src.models.link_validators import (
-    is_linkedin_link,
-    is_valid_link,
-    personal_link,
-)
+from application.src.models.link_validators import ValidatesLinks
 from application.src.services.user_service import get_user_info
 
 configuracao_ = Blueprint("config", __name__, template_folder="templates")
@@ -58,25 +44,34 @@ def config_account(usuario):
         site = request.form.get("site")
 
         # Validação dos links
-        validateslinks = ValidatesLinks(github=github, linkedin=linkedin, site=site)
-        
-       
+        validateslinks = ValidatesLinks(
+            github=github, linkedin=linkedin, site=site
+        )
+
         # Validar os links
         if not validateslinks:
-            flash(('github', "O link do GitHub fornecido é inválido."), "error")
-        
+            flash(
+                ("github", "O link do GitHub fornecido é inválido."), "error"
+            )
 
         # Verifica se pelo menos um dos links é válido
-        if validateslinks["github_valid"] or validateslinks["linkedin_valid"] or validateslinks["site_valid"]:
-            user_id = session.get('user', {}).get('id')
+        if (
+            validateslinks["github_valid"]
+            or validateslinks["linkedin_valid"]
+            or validateslinks["site_valid"]
+        ):
+            user_id = session.get("user", {}).get("id")
             if not user_id:
                 return redirect(url_for("login.login_page"))
 
             # Correção: Passar valores diretamente
             link_data = Links(
                 github=github if validateslinks["github_valid"] else None,
-                linkedin=linkedin if validateslinks["linkedin_valid"] else None,
-                site=site if validateslinks["site_regex"] else None )
+                linkedin=linkedin
+                if validateslinks["linkedin_valid"]
+                else None,
+                site=site if validateslinks["site_regex"] else None,
+            )
             print(link_data)
             link_of_user(link_data, user_id)
             flash("Links salvos com sucesso!", "success")

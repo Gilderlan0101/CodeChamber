@@ -1,5 +1,6 @@
 from application.src.services.api_service import dataRequests
 
+
 class SearchData:
     def __init__(self):
         self.username = ""
@@ -17,10 +18,11 @@ class SearchData:
                 "title": item["title"],
                 "resulm": item["resulm"],
                 "likes": item["likes"],
-                "user_id": item["user_id"]
+                "user_id": item["user_id"],
             }
             for item in data
-            if query.lower() in item["title"].lower() or query.lower() in item["resulm"].lower()
+            if query.lower() in item["title"].lower()
+            or query.lower() in item["resulm"].lower()
         ]
 
         # Retorna os resultados como lista de dicionários
@@ -35,14 +37,14 @@ class SearchData:
         if data["todos_os_posts"]:
             for var in data["todos_os_posts"]:
                 if isinstance(var, dict):
-                    result.append(
-                        {
-                            "username": var.get("nome", "Desconhecido").capitalize(),
-                            "title": var.get("titulo", "vazio").capitalize(),
-                            "resulm": var.get("post", "")[:50] + '...', 
-                            "ID": var.get("id", None),
-                            "likes": int(var.get("likes", 0)),
-                            "user_id": var.get("user_id")
-                        }
-                    )
+                    result.append({
+                        "username": var.get(
+                            "nome", "Desconhecido"
+                        ).capitalize(),
+                        "title": var.get("titulo", "vazio").capitalize(),
+                        "resulm": var.get("post", "")[:50] + "...",
+                        "ID": var.get("id", None),
+                        "likes": int(var.get("likes", 0)),
+                        "user_id": var.get("user_id"),
+                    })
         return result

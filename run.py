@@ -1,7 +1,7 @@
-from application.src.__main__ import create_app
-from application.src.models.search import SearchData
 import os
 import sys
+
+from application.src.__main__ import create_app
 
 app = create_app()
 
