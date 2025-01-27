@@ -1,3 +1,7 @@
+import hljs from 'highlight.js';
+import 'highlight.js/styles/default.css'; // Escolha o tema que preferir
+
+
 
 function handleImageClick(element) {
   // Obter o link da imagem a partir do atributo data-src
