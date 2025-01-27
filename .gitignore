@@ -5,7 +5,7 @@ teste_requestr_and_try
 
 usuarios.db
 .usuarios.db
-.evn
+
 .db
 .env.local
 
@@ -19,7 +19,7 @@ __pycache__/
 .Python
 .tox/
 .nox/
-env/
+
 venv/
 *.wsgi
 *.webtest
@@ -32,14 +32,13 @@ instance/
 # TailwindCSS
 tailwind.config.js
 postcss.config.js
-node_modules/
+/node_modules/
 
 # Database
 *.sqlite3
 *.db
 
 # Secrets
-*.env
 .env.local
 .secret_key
 secret/
@@ -72,13 +71,14 @@ local_settings.py
 
 .venv
 poetry.lock
+yarn.lock
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
 
-# C extensions
+# C extensionsgn
 *.so
 
 # Distribution / packaging

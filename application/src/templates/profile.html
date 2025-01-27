@@ -165,6 +165,21 @@
         </span>
     </div>
   </div>
+
+    <div class=" flex justify-center items-center p- m-0 space-x-2 -space-y-2" style="position: absolute; right: -8%; top: 95%;" >
+      {% if github_link %}
+      <a class="text-gray-100 border-none font-medium" target="_blank" href="{{ github_link }}">Github</a>
+      {% endif %}
+
+      {% if linkedin_link %}
+      <a class="text-gray-100 border-none font-medium" target="_blank" href="{{ linkedin_link }}">LinkedIn</a>
+      {% endif %}
+
+      {% if site_link %}
+      <a class="text-gray-100 border-none font-medium" target="_blank" href="{{ site_link }}">Site</a>
+      {% endif %}
+
+    </div>
     </div>
 
     <div class="flex flex-wrap gap-4 justify-start items-start m-5 mb-4 

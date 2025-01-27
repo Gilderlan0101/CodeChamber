@@ -1,7 +1,11 @@
 from application.src.__main__ import create_app
+from application.src.models.search import SearchData
 import os
+import sys
 
 app = create_app()
+
+sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
 
 if __name__ == '__main__':

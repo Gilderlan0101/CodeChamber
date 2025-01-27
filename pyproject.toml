@@ -3,7 +3,7 @@ name = "codechamber"
 version = "0.1.0"
 description = "DevOrbit é uma rede social voltada para estudantes e entusiastas de tecnologia, onde você pode compartilhar conhecimento, se conectar com outros devs e colaborar em projetos de programação. Junte-se a nós para aprender, ensinar e trocar experiências no mundo da TI!"
 authors = [
-    {name = "Your Name",email = "you@example.com"}
+    {name = "Gilderlan",email = "dacruzgg01@gmail.com"}
 ]
 license-files = ["LICENSE"]
 readme = "README.md"

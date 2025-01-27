@@ -165,7 +165,7 @@ def link_of_user(link: Links, user_id: int):
         UPDATE usuarios
         SET github = ?, likedin = ?, site = ?
         WHERE id = ?
-        ''', (link.github, link.likedin, link.site, user_id))
+        ''', (link.github, link.linkedin, link.site, user_id))
         banco.commit()
     except sqlite3.IntegrityError as e:
         print(f"Erro ao salvar dados: {e}")

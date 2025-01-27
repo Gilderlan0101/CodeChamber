@@ -55,10 +55,15 @@ def profile_page(usuario):
         following = user_metadata.get('following', 0)
 
 
-        
-       
-       
+        github_link = user_metadata.get("github", None)
+        linkedin_link = user_metadata.get("linkedin", None)
+        site_link = user_metadata.get("site", None)
 
+        
+
+
+           
+    
         # Verificar se é o perfil do próprio usuário logado | caso não for mostre o btn de seguir
         seguir = 'Networking' if usuario != current_user.username else None
 
@@ -102,7 +107,10 @@ def profile_page(usuario):
             followers=followers,
             following=following,
             biography=biography,
-            foto_commet=enriched_posts
+            foto_commet=enriched_posts,
+            github_link=github_link,
+            linkedin_link=linkedin_link,
+            site_link=site_link
            
            
         )
