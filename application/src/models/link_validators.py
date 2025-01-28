@@ -1,4 +1,5 @@
 # utf-8
+from typing import Union
 from urllib.parse import ParseResult, urlparse
 
 IMPROPER_KEYWORDS = (
@@ -46,7 +47,7 @@ def validate_links(github: str, linkedin: str, site: str):
     return results
 
 
-def validate_url(url: ParseResult, netloc: str | None = None):
+def validate_url(url: ParseResult, netloc: Union[str, None] = None):
     if url.scheme != "https":
         return False
     return url.netloc.lstrip("www.") == netloc if netloc else bool(url.netloc)
