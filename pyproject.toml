@@ -55,7 +55,7 @@ select = ["I", "F", "W", "E"]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-required_plugins = ["pytest-cov"]
-addopts = ["-vvv", "--doctest-modules", "--cov=application/src/", "--cov-report=html"]
+# required_plugins = ["pytest-cov"]
+addopts = ["-vvv", "--doctest-modules"]  # , "--cov=application/src/", "--cov-report=html"
 testpaths = ["tests"]
 pythonpath = "."
