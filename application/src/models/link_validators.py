@@ -1,33 +1,52 @@
 # utf-8
-import re
+from urllib.parse import ParseResult, urlparse
 
-IMPROPER_KEYWORDS = [
-    "adult", "porn", "xxx", "18+", "nsfw", "sex", "erotica", "xvideos",
-    "localhost", " torrent",  "Bit.ly", " pornografia", " vazados", "pornographic",
-]
+IMPROPER_KEYWORDS = (
+    "adult",
+    "porn",
+    "xxx",
+    "18+",
+    "nsfw",
+    "sex",
+    "erotica",
+    "xvideos",
+    "localhost",
+    " torrent",
+    "Bit.ly",
+    " pornografia",
+    " vazados",
+    "pornographic",
+)
 
-def ValidatesLinks(github, linkedin, site):
+
+def validate_links(github: str, linkedin: str, site: str):
     """
-    Valida os links fornecidos (GitHub, LinkedIn e site pessoal) com base em regex.
+    Valida os links fornecidos (GitHub, LinkedIn e site pessoal) com base em
+     urlparse.
     Retorna um dicionário indicando quais links são válidos.
     """
-
-    github_regex = r"^https:\/\/(www\.)?github\.com\/[\w-]+(\/[\w-]+)?\/?$"
-    linkedin_regex =  r"^https:\/\/(www\.)?linkedin\.com\/[\w-]+(\/[\w-]+)?\/?$"
-    site_regex = r"^(https?:\/\/)?(www\.)?[\w\-]+\.[a-z]{2,}(\.[a-z]{2,})?(\/[\w\-]*)*\/?$"
+    github_url, linkedin_url, site_url = map(
+        urlparse, (github, linkedin, site)
+    )
 
     for text_in_link in IMPROPER_KEYWORDS:
-        if text_in_link in github or text_in_link in linkedin or text_in_link in site:
-            return {"github_valid": False, "linkedin_valid": False, "site_valid": False}
-
-        
-        
+        if any(map(lambda x: text_in_link in x, (github, linkedin, site))):
+            return {
+                "github_valid": False,
+                "linkedin_valid": False,
+                "site_regex": False,
+            }
 
     results = {
-        "github_valid": re.match(github_regex, github) is not None ,
-        "linkedin_valid": re.match(linkedin_regex, linkedin) is not None,
-        "site_regex": re.match(site_regex, site) is not None
+        "github_valid": validate_url(github_url, "github.com"),
+        "linkedin_valid": validate_url(linkedin_url, "linkedin.com"),
+        "site_regex": validate_url(site_url),
     }
 
     return results
 
+
+def validate_url(url: ParseResult, netloc: str):
+    if url.scheme != "https":
+        return False
+    return url.netloc.lstrip("www.") == netloc if netloc else bool(url.netloc)

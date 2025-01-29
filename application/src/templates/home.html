@@ -271,7 +271,7 @@
               {% endif %}
             </div>
             <div class="ml-3">
-              <pre><code class="community-pos text-gray-100 text-sm whitespace-pre-line text-justify-start break-words">
+              <pre><code class="community-pos text-gray-100 text-xl whitespace-pre-line text-justify-start break-words">
                 {{ post.post | safe }}
               </code></pre>
             </div>
@@ -279,10 +279,10 @@
           
           <script>
             document.addEventListener("DOMContentLoaded", () => {
-              document.querySelectorAll('pre code').forEach((block) => {
-                hljs.highlightElement(block);
-              });
-            });
+    document.querySelectorAll('pre code.python').forEach((block) => {
+      hljs.highlightElement(block);
+    });
+  });
 
             document.addEventListener("DOMContentLoaded", () => {
             const observer = new IntersectionObserver(
