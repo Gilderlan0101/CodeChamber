@@ -7,6 +7,7 @@ license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
+python-dev = "python-dev-is-python3" 
 python = ">=3.9,<4.0"
 sqlalchemy = ">=2.0.37,<3.0.0"
 python-multipart = ">=0.0.20,<0.0.21"
