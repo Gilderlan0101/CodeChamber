@@ -21,7 +21,7 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential libssl-dev libffi-dev python-dev
+          sudo apt-get install -y build-essential libssl-dev libffi-dev python-dev-is-python3
 
       # Configura o Python (3.8 ou superior)
       - name: Set up Python
