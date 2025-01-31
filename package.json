@@ -6,9 +6,9 @@
     "dev": "tailwindcss -i ./application/src/static/input.css -o ./application/src/static/css/output.css --watch"
   },
   "keywords": [],
-  "author": "",
+  "author": "DevOrbit Developers",
   "license": "ISC",
-  "description": "",
+  "description": "Estilos visuais da DevOrbit Plataforma para Desenvolvedores",
   "devDependencies": {
     "tailwindcss": "^3.4.17"
   },
